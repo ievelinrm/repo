@@ -1,0 +1,19 @@
+2 Git / git hub / Code
+
+1. Instalar Code
+2. Instalar git
+3. Clonar repo a nuestra maquina
+4.  star and fork
+    copiar direccion (que contiene nuestro usuario en el url)
+    Abrir git bash
+    git -v
+    pwd para ver si estamos en la direccion de nuestro usuario (home)
+    cd si no estamos en esa carpeta
+    mkdir repo, para crear una carpeta con ese nombre
+    ls para ver los archivos
+    cd repo para entrar a la carpeta
+    git clone https://github.com/evelinrm/intro_automation para clonar esa carpeta a nuestra maquina
+5. se abre carpeta en la que se trabajara en Code
+6. Ir a la opcion de source control e inicializar el repositorio
+7. Agregar cambios con el +
+8. Tratar de subir cambios abajo con la nuvecita y la flecha para arriba, pedira credenciales de git

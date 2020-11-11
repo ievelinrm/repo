@@ -1,0 +1,78 @@
+Primeros pasos Selenium
+
+1. Instalar JDK
+2. Crear Variable de ambiente Java_home
+    System > Advance system settings > Environment variables
+    Crear nueva system variable, nombre: JAVA_HOME value: dirección donde se encuentra el JDK
+    ok
+    Incluir directorio de JDK en variable Path
+    Doble click en variable Path > New > Incluir direccion carpeta bin del JDK
+    Ejemplo de directorio: C:\Program Files\Java\jdk-15.0.1\bin
+    ok
+3. Abrir cmd
+    ingresar comando: Java
+    comprobar que si fue instalado jdk
+4. Instalar Eclipse IDE for JAVA developers
+5. Crear un proyecto de Maven
+6. Agregar MAVEN dependencies al archivo pom 
+    (dentro de etiquetas <dependencies> </dependencies>)
+    ir a https://www.selenium.dev/
+    ir a downloads > Maven
+    copiar la dependencia de maven 
+    ir a https://junit.org/junit4/dependency-info.html
+    copiar la dependencia de maven 
+7. Incluir scope test dentro de esas dos dependencias
+    <scope> test </scope>
+8. Crear una java class dentro de src/test/java
+9. Descargar chromedriver de la version de nuestro chrome 
+    extraer del zip
+    en eclipse, crear una nueva carpeta dentro de src/test/resources
+    nombre de carpeta: chromedriver
+    importar archivo de chrome driver.exe
+10. La clase de una prueba basica.
+
+package com.qualitystream.tutorial;
+
+import static org.junit.Assert.assertEquals;
+
+import java.util.concurrent.TimeUnit;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class GoogleSearchTests {
+	
+	private WebDriver driver;
+	
+	@Before
+	public void setUp() {
+		System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromedriver/chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get("https://www.google.com");
+	}
+	
+	@Test
+	public void testGooglePage() {
+		WebElement searchbox = driver.findElement(By.name("q"));
+		searchbox.clear();
+		searchbox.sendKeys("test");
+		searchbox.submit();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		assertEquals("test - Buscar con Google", driver.getTitle());
+	}
+	
+	@After
+	public void tearDown() {
+		driver.quit();
+	}
+	
+}
+
+
+
